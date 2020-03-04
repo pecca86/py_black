@@ -26,6 +26,7 @@ class BlackJack():
         #creates the dealer
         self.dealer = Dealer()
         
+        print(f"Welcome to PeckJack {self.player1.name}. Please type 'h' to hit, 's' to stay or 'q' to quit.")
         #self.deal_card()
         self.deal_card(self.player1)
         #start the game
@@ -38,13 +39,13 @@ class BlackJack():
         '''
         while self.game_on:
             player_action = input("hit or stay?: ")
-            if player_action == "hit":
+            if player_action == "h":
                 self.deal_card(self.player1)
                 self.evaluate_hand(self.player1)
-            elif player_action == "stay":
+            elif player_action == "s":
                 #cant use game_on = False, since it quits the whole game
                 break
-            elif player_action == "quit":
+            elif player_action == "s":
                 self.game_on = False
             else:
                 print("Allowed commands: hit, stay or quit")
@@ -57,6 +58,7 @@ class BlackJack():
         player: either human player or CPU dealer
         '''
         print(f"{player.name}'s turn")
+        print("-----------")
         #calls the Deck class' deal_card method
         dealt_card = self.game_deck.deal_card(player)
         #calls the Player class' hit method
@@ -109,7 +111,7 @@ class BlackJack():
             if self.dealer.hand_value < self.player1.hand_value:
                 self.deal_card(self.dealer)
                 #timer so it prints slower to the console
-                time.sleep(1.2)
+                time.sleep(2.0)
             elif self.dealer.hand_value > 21:
                 self.evaluate_hand(self.dealer)
                 print(f'{self.player1.name} WON!')
